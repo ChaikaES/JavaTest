@@ -94,6 +94,38 @@ public class CRMTest {
 
         Thread.sleep(10000);
 
+
+    }
+
+    @Test
+    void CreateCardTest () throws InterruptedException {
+
+        WebElement navElement = driver.findElement(By.xpath("//a/span[.='Контрагенты']"));
+
+        Actions actions = new Actions(driver);
+
+        actions.moveToElement(navElement).build().perform();
+        driver.findElement(By.xpath("//span[.='Контактные лица']")).click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[.='Создать контактное лицо']")));
+        driver.findElement(By.xpath("//a[.='Создать контактное лицо']")).click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@id, 'crm_contact_lastName')]")));
+        driver.findElement(By.xpath("//input[contains(@id, 'crm_contact_lastName')]")).sendKeys("Ivanov");
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@id, 'crm_contact_firstName')]")));
+        driver.findElement(By.xpath("//input[contains(@id, 'crm_contact_firstName')]")).sendKeys("Stepan");
+
+        driver.findElement(By.xpath("//span[text()='Укажите организацию']")).click();
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='«Все организации»']")));
+        driver.findElement(By.xpath("//div[text()='«Все организации»']")).click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@id, 'crm_contact_jobTitle')]")));
+        driver.findElement(By.xpath("//input[contains(@id, 'crm_contact_jobTitle')]")).sendKeys("Jober");
+
+        driver.findElement(By.xpath("//button[contains(text(), 'Сохранить и закрыть')]")).click();
+
+        Thread.sleep(10000);
     }
 
 }

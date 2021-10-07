@@ -65,25 +65,25 @@ public class CRMTest {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='«Все организации»']")));
         driver.findElement(By.xpath("//div[text()='«Все организации»']")).click();
 
-        Select select1 = new Select(
+        Select selectBusinessUnit = new Select(
                 driver.findElement(By.xpath("//select[@name='crm_project[businessUnit]']")));
-        select1.selectByVisibleText("Research & Development");
+        selectBusinessUnit.selectByVisibleText("Research & Development");
 
-        Select select2 = new Select(
+        Select selectCurator = new Select(
                 driver.findElement(By.xpath("//select[@name='crm_project[curator]']")));
-        select2.selectByVisibleText("Applanatest Applanatest Applanatest");
+        selectCurator.selectByVisibleText("Applanatest Applanatest Applanatest");
 
-        Select select3 = new Select(
+        Select selectRp = new Select(
                 driver.findElement(By.xpath("//select[@name='crm_project[rp]']")));
-        select3.selectByVisibleText("Applanatest1 Applanatest1 Applanatest1");
+        selectRp.selectByVisibleText("Applanatest1 Applanatest1 Applanatest1");
 
-        Select select4 = new Select(
+        Select selectAdministrator = new Select(
                 driver.findElement(By.xpath("//select[@name='crm_project[administrator]']")));
-        select4.selectByVisibleText("Applanatest2 Applanatest2 Applanatest2");
+        selectAdministrator.selectByVisibleText("Applanatest2 Applanatest2 Applanatest2");
 
-        Select select5 = new Select(
+        Select selectManager = new Select(
                 driver.findElement(By.xpath("//select[@name='crm_project[manager]']")));
-        select5.selectByVisibleText("Юзеров Юзер");
+        selectManager.selectByVisibleText("Юзеров Юзер");
 
         Thread.sleep(1000);
         driver.findElement(By.xpath("//div[contains(@id, 'contactMain')]/a/span")).click();
@@ -94,11 +94,10 @@ public class CRMTest {
 
         Thread.sleep(10000);
 
-
     }
 
     @Test
-    void CreateCardTest () throws InterruptedException {
+    void createCardTest() throws InterruptedException {
 
         WebElement navElement = driver.findElement(By.xpath("//a/span[.='Контрагенты']"));
 

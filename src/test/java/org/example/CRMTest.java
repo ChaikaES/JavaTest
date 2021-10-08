@@ -16,7 +16,7 @@ public class CRMTest {
     WebDriver driver;
     WebDriverWait webDriverWait;
     final String CRM_URL = "https://crm.geekbrains.space";
-    final String PROJECT_NAME = "MoNameR1";
+    final String PROJECT_NAME = "MoNameR9";
 
     @BeforeAll
     static void registerDriver(){
@@ -94,6 +94,8 @@ public class CRMTest {
 
         Thread.sleep(10000);
 
+        WebElement header = driver.findElement(By.xpath("//h1[contains(text(),'Проекты')]"));
+        Assertions.assertNotNull(header);
     }
 
     @Test
@@ -125,6 +127,8 @@ public class CRMTest {
         driver.findElement(By.xpath("//button[contains(text(), 'Сохранить и закрыть')]")).click();
 
         Thread.sleep(10000);
-    }
 
+        WebElement headerTwo = driver.findElement(By.xpath("//h1[contains(text(),'Контактные лица')]"));
+        Assertions.assertNotNull(headerTwo);
+    }
 }

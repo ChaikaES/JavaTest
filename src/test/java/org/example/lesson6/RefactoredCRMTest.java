@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class RefactoredCRMTest {
 
     final String CRM_URL = "https://crm.geekbrains.space";
-    final String PROJECT_NAME = "MoNameR11";
+    final String PROJECT_NAME = "MoNameR12";
     WebDriver driver;
     WebDriverWait webDriverWait;
     MainPage mainPage;

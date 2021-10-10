@@ -29,7 +29,8 @@ public class LoginPage extends BaseView {
         return this;
     }
 
-    public void sendLogin() {
+    public MainPage sendLogin() {
         buttonLogin.click();
+        return new MainPage(driver);
     }
 }

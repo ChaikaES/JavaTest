@@ -1,54 +1,38 @@
 package org.example.lesson8;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
-public class CreateProjectPage extends BaseView {
+import static com.codeborne.selenide.Selenide.$;
+
+public class CreateProjectPage {
     final static String crmProjectNameXpath = "//input[contains(@id, 'crm_project_name')]";
     final static String allOrganizationsOptionXpath = "//div[text()='«Все организации»']";
     final static String contactOptionXpath = "//div[text()='123 123']";
 
-    @FindBy(xpath = crmProjectNameXpath)
-    public WebElement crmProjectNameInput;
+    private SelenideElement crmProjectNameInput = $(By.xpath(crmProjectNameXpath));
 
-    @FindBy(xpath = "//span[text()='Укажите организацию']")
-    public WebElement organizationInput;
+    private SelenideElement organizationInput = $(By.xpath("//span[text()='Укажите организацию']"));
 
-    @FindBy(xpath = allOrganizationsOptionXpath)
-    public WebElement allOrganizationsOption;
+    private SelenideElement allOrganizationsOption = $(By.xpath(allOrganizationsOptionXpath));
 
-    @FindBy(xpath = "//select[@name='crm_project[businessUnit]']")
-    public WebElement selectBusinessUnit;
+    public SelenideElement selectBusinessUnit = $(By.xpath("//select[@name='crm_project[businessUnit]']"));
 
-    @FindBy(xpath = "//select[@name='crm_project[curator]']")
-    public WebElement selectCurator;
+    public SelenideElement selectCurator = $(By.xpath("//select[@name='crm_project[curator]']"));
 
-    @FindBy(xpath = "//select[@name='crm_project[rp]']")
-    public WebElement selectRp;
+    public SelenideElement selectRp = $(By.xpath("//select[@name='crm_project[rp]']"));
 
-    @FindBy(xpath = "//select[@name='crm_project[administrator]']")
-    public WebElement selectAdministrator;
+    public SelenideElement selectAdministrator = $(By.xpath("//select[@name='crm_project[administrator]']"));
 
-    @FindBy(xpath = "//select[@name='crm_project[manager]']")
-    public WebElement selectManager;
+    public SelenideElement selectManager = $(By.xpath("//select[@name='crm_project[manager]']"));
 
-    @FindBy(xpath = "//div[contains(@id, 'contactMain')]/a/span")
-    public WebElement selectContact;
+    public SelenideElement selectContact = $(By.xpath("//div[contains(@id, 'contactMain')]/a/span"));
 
-    @FindBy(xpath = contactOptionXpath)
-    public WebElement contactOption;
+    private SelenideElement contactOption = $(By.xpath(contactOptionXpath));
 
-    @FindBy(xpath = "//button[contains(text(), 'Сохранить и закрыть')]")
-    public WebElement saveAndCloseButton;
+    private SelenideElement saveAndCloseButton = $(By.xpath("//button[contains(text(), 'Сохранить и закрыть')]"));
 
-    public CreateProjectPage(WebDriver driver) {
-        super(driver);
-    }
 
     public CreateProjectPage setProjectName(String projectName) {
         crmProjectNameInput.sendKeys(projectName);
@@ -58,46 +42,43 @@ public class CreateProjectPage extends BaseView {
     @Step("Указать организацию")
     public CreateProjectPage setOrganization() {
         organizationInput.click();
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(allOrganizationsOptionXpath)));
         allOrganizationsOption.click();
         return this;
     }
 
     @Step("Выбрать Бизнес")
-    public CreateProjectPage setBusinessUnit(String businessUnit) {
-        new Select(selectBusinessUnit).selectByVisibleText(businessUnit);
+    public CreateProjectPage setBusinessUnit(String option) {
+        selectBusinessUnit.selectOptionContainingText(option);
         return this;
     }
 
     @Step("Выбрать куратора")
-    public CreateProjectPage setCurator(String curator) {
-        new Select(selectCurator).selectByVisibleText(curator);
+    public CreateProjectPage setCurator(String option) {
+        selectCurator.selectOptionContainingText(option);
         return this;
     }
 
     @Step("Выбрать rP")
-    public CreateProjectPage setRp(String rP) {
-        new Select(selectRp).selectByVisibleText(rP);
+    public CreateProjectPage setRp(String option) {
+        selectRp.selectOptionContainingText(option);
         return this;
     }
 
     @Step("Выбрать администратора")
-    public CreateProjectPage setAdministrator(String administrator) {
-        new Select(selectAdministrator).selectByVisibleText(administrator);
+    public CreateProjectPage setAdministrator(String option) {
+        selectAdministrator.selectOptionContainingText(option);
         return this;
     }
 
     @Step("Выбрать менеджера")
-    public CreateProjectPage setManager(String manager) {
-        new Select(selectManager).selectByVisibleText(manager);
+    public CreateProjectPage setManager(String option) {
+        selectManager.selectOptionContainingText(option);
         return this;
     }
 
     @Step("Создать запись контакта")
     public CreateProjectPage setContact() throws InterruptedException {
-        Thread.sleep(1000);
         selectContact.click();
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(contactOptionXpath)));
         contactOption.click();
         return this;
     }
@@ -106,6 +87,6 @@ public class CreateProjectPage extends BaseView {
     public AllProjectsPage clickSaveAndCloseButton() throws InterruptedException {
         saveAndCloseButton.click();
         Thread.sleep(10000);
-        return new AllProjectsPage(driver);
+        return new AllProjectsPage();
     }
 }

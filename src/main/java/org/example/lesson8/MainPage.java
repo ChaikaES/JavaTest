@@ -2,11 +2,10 @@ package org.example.lesson8;
 
 import org.openqa.selenium.WebDriver;
 
-public class MainPage extends BaseView {
+public class MainPage {
     public NavigationMenu navigationMenu;
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-        navigationMenu = new NavigationMenu(driver);
+    public MainPage() {
+        navigationMenu = new NavigationMenu();
     }
 }

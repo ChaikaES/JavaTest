@@ -33,4 +33,12 @@ public class LoginPage {
         //return new MainPage(driver);
         return page(MainPage.class);
     }
+
+    @Step("Логин на сайте")
+    public void login(String login, String password) {
+        open("https://crm.geekbrains.space/");
+        inputLogin.sendKeys(login);
+        inputPassword.sendKeys(password);
+        buttonLogin.click();
+    }
 }

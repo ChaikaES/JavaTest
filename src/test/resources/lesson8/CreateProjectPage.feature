@@ -4,8 +4,11 @@ Feature: create project page
     Given I am autorized
 
     Scenario:
+      Given I hover nav menu
+      And I click my project
+      And I click create project button
       Given I am at creation project page
-
+      
       When I fill project name
       And I select Organization
       And I select BusinessUnit

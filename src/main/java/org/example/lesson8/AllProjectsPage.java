@@ -1,15 +1,10 @@
 package org.example.lesson8;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
-public class AllProjectsPage extends BaseView {
+import static com.codeborne.selenide.Selenide.$;
 
-    @FindBy(xpath = "//h1[contains(text(),'Проекты')]")
-    public WebElement header;
-
-    public AllProjectsPage(WebDriver driver) {
-        super(driver);
-    }
+public class AllProjectsPage{
+    private SelenideElement header = $(By.xpath("//h1[contains(text(),'Проекты')]"));
 }

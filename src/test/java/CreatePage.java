@@ -2,10 +2,27 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.lesson8.*;
 
 public class CreatePage {
     @Given("I am autorized")
     public void iAmAutorized() {
+        new LoginPage().login("Applanatest1", "Student2020!");
+    }
+
+    @Given("I hover nav menu")
+    public void iHoverNavMenu() {
+        new MainPage().navigationMenu.openNavigationSubMenuItems("Проекты");
+    }
+
+    @And("I click my project")
+    public void iClickMyProject() {
+        new ProjectsSubMenu().clickMyProjectsButton();
+    }
+
+    @And("I click create project button")
+    public void iClickCreateProjectButton() {
+        new MyProjectsPage().createProjectButton();
     }
 
     @Given("I am at creation project page")

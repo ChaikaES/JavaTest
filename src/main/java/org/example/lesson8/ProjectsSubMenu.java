@@ -1,21 +1,17 @@
 package org.example.lesson8;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 
-public class ProjectsSubMenu extends BaseView {
-    @FindBy(xpath = "//span[.='Мои проекты']")
-    public WebElement myProjectsButton;
+import static com.codeborne.selenide.Selenide.*;
 
-    public ProjectsSubMenu(WebDriver driver) {
-        super(driver);
-    }
+public class ProjectsSubMenu {
+        private SelenideElement myProjectsButton = $(By.xpath("//span[.='Мои проекты']"));
 
     @Step("Выбрать Мои проекты")
     public MyProjectsPage clickMyProjectsButton() {
         myProjectsButton.click();
-        return new MyProjectsPage(driver);
+        return page(MyProjectsPage.class);
     }
 }

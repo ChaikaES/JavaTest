@@ -22,7 +22,7 @@ public class CreatePage {
 
     @And("I click create project button")
     public void iClickCreateProjectButton() {
-        new MyProjectsPage().createProjectButton();
+        new MyProjectsPage().clickCreateProjectButton();
     }
 
     @Given("I am at creation project page")

@@ -78,15 +78,17 @@ public class CreateProjectPage {
 
     @Step("Создать запись контакта")
     public CreateProjectPage setContact() throws InterruptedException {
+        Thread.sleep(1000);
         selectContact.click();
         contactOption.click();
         return this;
     }
 
     @Step("Нажать кнопку Сохранить и закрыть")
-    public AllProjectsPage clickSaveAndCloseButton() throws InterruptedException {
+    public AllProjectsPage clickSaveAndCloseButton() {
         saveAndCloseButton.click();
-        Thread.sleep(10000);
         return new AllProjectsPage();
     }
+
+    public SelenideElement successfullCreate = $(By.xpath("//h1[contains(text(),'Проекты')]"));
 }
